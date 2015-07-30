@@ -1,0 +1,19 @@
+# compiling C++ code
+%.o: %.cpp
+	$(CXX)  -o $@ -c $<
+%: %.o
+	$(CXX)  -o $@ $< 
+
+CXX = g++
+## specify your object files here
+OBJS = Query.cpp Tweet.cpp Corpus.cpp CalculateScore.cpp LanguageModel.cpp Utility.cpp
+## specify your program here
+PROG = calculateScore
+
+all: $(PROG)
+
+$(PROG): $(OBJS)
+	$(CXX)  -o $@ $^ 
+
+clean:
+	rm calculateScore
